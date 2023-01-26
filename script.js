@@ -17,6 +17,6 @@ Array.from(document.querySelectorAll("button"), button => {
 
 function pushState(state /* string: list | table | groups | expand */){
     nav.setAttribute("state", state)
-    style.setAttribute("href", "/" + state + ".css")
+    style.setAttribute("href", "./" + state + ".css")
     localStorage.setItem("view", state)
 }
