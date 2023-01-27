@@ -1,494 +1,1055 @@
-<html>
+<script src="./script.js"></script>
+<style>
+    body {
+        margin: 0 auto;
+        font-family: "Helvetica", "Arial", sans-serif;
+        line-height: 1.5;
+        padding: 1em 1em;
+        color: #DDD;
+        background-color: black
+    }
 
-<head>
-    <title>Periodic Table Of Tools</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <link id="swapstyle" rel="stylesheet" href="./table.css">
-    <script defer src="script.js"></script>
-    <style>
-        nav[state="table"] button#table,
-        nav[state="expand"] #expand,
-        nav[state="groups"] #groups,
-        nav[state="list"] #list {
-            background: inherit;
-            border: inherit;
-            color: white;
-        }
-        
-        body {
-            background-color: black;
-            color: white;
-        }
-    </style>
-</head>
+    a:link,
+    a:hover,
+    a:active,
+    a:visited {
+        color: #FFF;
+    }
 
-<body>
-    <nav state="table">
-        <button id="table">Table View</button>
-        <button id="expand">Expanded Table View</button>
-        <button id="groups">Groups View</button>
-        <button id="list">List View</button>
-    </nav>
+    /* rules for expand and shrink */
+    #expand img {
+        max-width: 160;
+    }
+
+    #shrink img {
+        max-width: 5.3vw;
+    }
+
+    td {
+        padding: 0px;
+        border: 0px solid black;
+    }
+
+    table {
+        border-collapse: collapse;
+        border: 10px solid black;
+    }
+
+    /* style for groups and list view */
+
+    #groups img,
+    #list img {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    @media (max-width: 1632px) {
+
+        #groups img,
+        #list img {
+            width: 20%;
+        }
+    }
+
+    @media (max-width: 1312px) {
+
+        #groups img,
+        #list img {
+            width: 25%;
+        }
+    }
+
+    @media (max-width: 992px) {
+
+        #groups img,
+        #list img {
+            width: 33%;
+        }
+    }
+
+    @media (max-width: 672px) {
+
+        #groups img,
+        #list img {
+            width: 50%;
+        }
+    }
+
+    @media (max-width: 352px) {
+
+        #groups img,
+        #list img {
+            width: 100%;
+        }
+    }
+
+    /* begin radio button selector rules */
+
+    label {
+        color: #DDF;
+        text-decoration: underline;
+        padding: 6px 3px;
+        display: inline-block; 
+    }
+
+    label:hover {
+        color: #FFF;
+        cursor: pointer;
+    }
+
+    #shrink,
+    #expand,
+    #groups,
+    #list {
+        display: none;
+    }
+
+    .hiddenradio {
+        display: none;
+    }
+
+    #shrinkchk:checked~#shrinkbtn,
+    #expandchk:checked~#expandbtn,
+    #groupschk:checked~#groupsbtn,
+    #listchk:checked~#listbtn {
+        text-decoration: none;
+        color: #FFF;
+        cursor: unset;
+    }
+
+    #shrinkchk:checked~#shrink,
+    #expandchk:checked~#expand,
+    #groupschk:checked~#groups,
+    #listchk:checked~#list {
+        display: block;
+    }
+</style>
+
+<input type="radio" id="shrinkchk" class="hiddenradio" name="view" checked="checked">
+<input type="radio" id="expandchk" class="hiddenradio" name="view">
+<input type="radio" id="groupschk" class="hiddenradio" name="view">
+<input type="radio" id="listchk" class="hiddenradio" name="view">
+
+<label for="shrinkchk" id="shrinkbtn" class="viewbutton">Table View</label>
+<label for="expandchk" id="expandbtn" class="viewbutton">Expanded Table View</label>
+<label for="groupschk" id="groupsbtn" class="viewbutton">Groups View</label>
+<label for="listchk" id="listbtn" class="viewbutton">List View</label>
+
+<table id="shrink">
+    <tbody>
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Basic%20Hammers.html"><img
+                        src="https://periodictableoftools.com/Images/001/001.320.jpg" alt="Basic Hammers"></a></td>
+            <td colspan="16" valign="center" align="center"><img style="max-width:84.4vw;"
+                    src="https://periodictableoftools.com/Images/TitleBanner/TitleBanner.2560.jpg" alt="Title Banner" width="2560"></td>
+            <td valign="center" align="center"><a href="Categories/Driver%20Bits.html"><img src="https://periodictableoftools.com/Images/002/002.320.jpg"
+                        alt="Driver Bits"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Fancy%20Hammers.html"><img
+                        src="https://periodictableoftools.com/Images/003/003.320.jpg" alt="Fancy Hammers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Punches%20&amp;%20Stamps.html"><img
+                        src="https://periodictableoftools.com/Images/004/004.320.jpg" alt="Punches &amp; Stamps"></a></td>
+            <td>&nbsp;</td>
+            <td colspan="8" rowspan="2" valign="center" align="center"><img style="max-width:37.8vw;"
+                    src="https://periodictableoftools.com/Images/PosterBanner/PosterBanner.2560.jpg" alt="Buy This Poster Banner" width="2560"></td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Twist%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/005/005.320.jpg" alt="Twist Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Even-Sided%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/006/006.320.jpg" alt="Even-Sided Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd-Sided%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/007/007.320.jpg" alt="Odd-Sided Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pipe%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/008/008.320.jpg" alt="Pipe Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Soldering.html"><img src="https://periodictableoftools.com/Images/009/009.320.jpg"
+                        alt="Soldering"></a></td>
+            <td valign="center" align="center"><a href="Categories/Basic%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/010/010.320.jpg" alt="Basic Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Mallets.html"><img src="https://periodictableoftools.com/Images/011/011.320.jpg"
+                        alt="Mallets"></a></td>
+            <td valign="center" align="center"><a href="Categories/Rivets.html"><img src="https://periodictableoftools.com/Images/012/012.320.jpg"
+                        alt="Rivets"></a></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Forstner%20Bits.html"><img
+                        src="https://periodictableoftools.com/Images/013/013.320.jpg" alt="Forstner Bits"></a></td>
+            <td valign="center" align="center"><a href="Categories/Hollow%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/014/014.320.jpg" alt="Hollow Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Crescent%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/015/015.320.jpg" alt="Crescent Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/016/016.320.jpg" alt="Odd Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Welding.html"><img src="https://periodictableoftools.com/Images/017/017.320.jpg"
+                        alt="Welding"></a></td>
+            <td valign="center" align="center"><a href="Categories/Multi%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/018/018.320.jpg" alt="Multi Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Sledges%20and%20Axes.html"><img
+                        src="https://periodictableoftools.com/Images/019/019.320.jpg" alt="Sledges and Axes"></a></td>
+            <td valign="center" align="center"><a href="Categories/Manual%20Nailers%20&amp;%20Staplers.html"><img
+                        src="https://periodictableoftools.com/Images/020/020.320.jpg" alt="Manual Nailers &amp; Staplers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Knives.html"><img src="https://periodictableoftools.com/Images/021/021.320.jpg"
+                        alt="Knives"></a></td>
+            <td valign="center" align="center"><a href="Categories/Scrapers.html"><img src="https://periodictableoftools.com/Images/022/022.320.jpg"
+                        alt="Scrapers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Files.html"><img src="https://periodictableoftools.com/Images/023/023.320.jpg"
+                        alt="Files"></a></td>
+            <td valign="center" align="center"><a href="Categories/Snips.html"><img src="https://periodictableoftools.com/Images/024/024.320.jpg"
+                        alt="Snips"></a></td>
+            <td valign="center" align="center"><a href="Categories/Nippers.html"><img src="https://periodictableoftools.com/Images/025/025.320.jpg"
+                        alt="Nippers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Wood%20Saws.html"><img src="https://periodictableoftools.com/Images/026/026.320.jpg"
+                        alt="Wood Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Hacksaws.html"><img src="https://periodictableoftools.com/Images/027/027.320.jpg"
+                        alt="Hacksaws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Saw%20Teeth.html"><img src="https://periodictableoftools.com/Images/028/028.320.jpg"
+                        alt="Saw Teeth"></a></td>
+            <td valign="center" align="center"><a href="Categories/Copper%20Tools.html"><img
+                        src="https://periodictableoftools.com/Images/029/029.320.jpg" alt="Copper Tools"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd%20Saws.html"><img src="https://periodictableoftools.com/Images/030/030.320.jpg"
+                        alt="Odd Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Masonry%20Bits.html"><img
+                        src="https://periodictableoftools.com/Images/031/031.320.jpg" alt="Masonry Bits"></a></td>
+            <td valign="center" align="center"><a href="Categories/Eggbeater%20&amp;%20Brace%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/032/032.320.jpg" alt="Eggbeater &amp; Brace Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Socket%20Sets.html"><img src="https://periodictableoftools.com/Images/033/033.320.jpg"
+                        alt="Socket Sets"></a></td>
+            <td valign="center" align="center"><a href="Categories/Ratchet%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/034/034.320.jpg" alt="Ratchet Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Casting.html"><img src="https://periodictableoftools.com/Images/035/035.320.jpg"
+                        alt="Casting"></a></td>
+            <td valign="center" align="center"><a href="Categories/Driver%20Sets.html"><img src="https://periodictableoftools.com/Images/036/036.320.jpg"
+                        alt="Driver Sets"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Picks%20and%20Pry%20Bars.html"><img
+                        src="https://periodictableoftools.com/Images/037/037.320.jpg" alt="Picks and Pry Bars"></a></td>
+            <td valign="center" align="center"><a href="Categories/Power%20Nailers%20&amp;%20Staplers.html"><img
+                        src="https://periodictableoftools.com/Images/038/038.320.jpg" alt="Power Nailers &amp; Staplers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Chisels.html"><img src="https://periodictableoftools.com/Images/039/039.320.jpg"
+                        alt="Chisels"></a></td>
+            <td valign="center" align="center"><a href="Categories/Scribes%20and%20Awls.html"><img
+                        src="https://periodictableoftools.com/Images/040/040.320.jpg" alt="Scribes and Awls"></a></td>
+            <td valign="center" align="center"><a href="Categories/Routers.html"><img src="https://periodictableoftools.com/Images/041/041.320.jpg"
+                        alt="Routers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Wire%20Cutters%20&amp;%20Strippers.html"><img
+                        src="https://periodictableoftools.com/Images/042/042.320.jpg" alt="Wire Cutters &amp; Strippers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Loppers.html"><img src="https://periodictableoftools.com/Images/043/043.320.jpg"
+                        alt="Loppers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pipe%20Cutters.html"><img
+                        src="https://periodictableoftools.com/Images/044/044.320.jpg" alt="Pipe Cutters"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bow%20Saws.html"><img src="https://periodictableoftools.com/Images/045/045.320.jpg"
+                        alt="Bow Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Jigsaws.html"><img src="https://periodictableoftools.com/Images/046/046.320.jpg"
+                        alt="Jigsaws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Circular%20Saws.html"><img
+                        src="https://periodictableoftools.com/Images/047/047.320.jpg" alt="Circular Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Saws%20for%20Jointing.html"><img
+                        src="https://periodictableoftools.com/Images/048/048.320.jpg" alt="Saws for Jointing"></a></td>
+            <td valign="center" align="center"><a href="Categories/Reamers.html"><img src="https://periodictableoftools.com/Images/049/049.320.jpg"
+                        alt="Reamers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Threading.html"><img src="https://periodictableoftools.com/Images/050/050.320.jpg"
+                        alt="Threading"></a></td>
+            <td valign="center" align="center"><a href="Categories/Cordless%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/051/051.320.jpg" alt="Cordless Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Torque%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/052/052.320.jpg" alt="Torque Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Laser%20Cutters%20&amp;%203D%20Printers.html"><img
+                        src="https://periodictableoftools.com/Images/053/053.320.jpg" alt="Laser Cutters &amp; 3D Printers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Swiss%20Army%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/054/054.320.jpg" alt="Swiss Army Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Power%20Hammers.html"><img
+                        src="https://periodictableoftools.com/Images/055/055.320.jpg" alt="Power Hammers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Exotic%20Nailers.html"><img
+                        src="https://periodictableoftools.com/Images/056/056.320.jpg" alt="Exotic Nailers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Hand%20Grinders.html"><img
+                        src="https://periodictableoftools.com/Images/071/071.320.jpg" alt="Hand Grinders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Sanders.html"><img src="https://periodictableoftools.com/Images/072/072.320.jpg"
+                        alt="Sanders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Lathes.html"><img src="https://periodictableoftools.com/Images/073/073.320.jpg"
+                        alt="Lathes"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bolt%20Cutters.html"><img
+                        src="https://periodictableoftools.com/Images/074/074.320.jpg" alt="Bolt Cutters"></a></td>
+            <td valign="center" align="center"><a href="Categories/Punch%20&amp;%20Dies.html"><img
+                        src="https://periodictableoftools.com/Images/075/075.320.jpg" alt="Punch &amp; Dies"></a></td>
+            <td valign="center" align="center"><a href="Categories/Air%20Pressure.html"><img
+                        src="https://periodictableoftools.com/Images/076/076.320.jpg" alt="Air Pressure"></a></td>
+            <td valign="center" align="center"><a href="Categories/Crazy%20Saws.html"><img src="https://periodictableoftools.com/Images/077/077.320.jpg"
+                        alt="Crazy Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Reciprocating%20Saws.html"><img
+                        src="https://periodictableoftools.com/Images/078/078.320.jpg" alt="Reciprocating Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Miter%20Saws.html"><img src="https://periodictableoftools.com/Images/079/079.320.jpg"
+                        alt="Miter Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bandsaws.html"><img src="https://periodictableoftools.com/Images/080/080.320.jpg"
+                        alt="Bandsaws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Augers%20&amp;%20Spades.html"><img
+                        src="https://periodictableoftools.com/Images/081/081.320.jpg" alt="Augers &amp; Spades"></a></td>
+            <td valign="center" align="center"><a href="Categories/Chucks.html"><img src="https://periodictableoftools.com/Images/082/082.320.jpg"
+                        alt="Chucks"></a></td>
+            <td valign="center" align="center"><a href="Categories/Angle%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/083/083.320.jpg" alt="Angle Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Impact%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/084/084.320.jpg" alt="Impact Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Optical%20Instruments.html"><img
+                        src="https://periodictableoftools.com/Images/085/085.320.jpg" alt="Optical Instruments"></a></td>
+            <td valign="center" align="center"><a href="Categories/Screw%20Guns.html"><img src="https://periodictableoftools.com/Images/086/086.320.jpg"
+                        alt="Screw Guns"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Unhammerers.html"><img src="https://periodictableoftools.com/Images/087/087.320.jpg"
+                        alt="Unhammerers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Sewing.html"><img src="https://periodictableoftools.com/Images/088/088.320.jpg"
+                        alt="Sewing"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bench%20Grinders.html"><img
+                        src="https://periodictableoftools.com/Images/103/103.320.jpg" alt="Bench Grinders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Planes.html"><img src="https://periodictableoftools.com/Images/104/104.320.jpg"
+                        alt="Planes"></a></td>
+            <td valign="center" align="center"><a href="Categories/Milling%20Machines.html"><img
+                        src="https://periodictableoftools.com/Images/105/105.320.jpg" alt="Milling Machines"></a></td>
+            <td valign="center" align="center"><a href="Categories/Shears.html"><img src="https://periodictableoftools.com/Images/106/106.320.jpg"
+                        alt="Shears"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pantographs.html"><img src="https://periodictableoftools.com/Images/107/107.320.jpg"
+                        alt="Pantographs"></a></td>
+            <td valign="center" align="center"><a href="Categories/Jigs%20and%20Templates.html"><img
+                        src="https://periodictableoftools.com/Images/108/108.320.jpg" alt="Jigs and Templates"></a></td>
+            <td valign="center" align="center"><a href="Categories/Chain%20Saws.html"><img src="https://periodictableoftools.com/Images/109/109.320.jpg"
+                        alt="Chain Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Scroll%20Saws.html"><img src="https://periodictableoftools.com/Images/110/110.320.jpg"
+                        alt="Scroll Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Radial%20Arm%20&amp;%20Table%20Saws.html"><img
+                        src="https://periodictableoftools.com/Images/111/111.320.jpg" alt="Radial Arm &amp; Table Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Other.html"><img src="https://periodictableoftools.com/Images/112/112.320.jpg"
+                        alt="Other"></a></td>
+            <td valign="center" align="center"><a href="Categories/Antique%20Augers.html"><img
+                        src="https://periodictableoftools.com/Images/113/113.320.jpg" alt="Antique Augers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Drill%20Presses.html"><img
+                        src="https://periodictableoftools.com/Images/114/114.320.jpg" alt="Drill Presses"></a></td>
+            <td valign="center" align="center"><a href="Categories/Big%20Drills.html"><img src="https://periodictableoftools.com/Images/115/115.320.jpg"
+                        alt="Big Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Corded%20&amp;%20Hammer%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/116/116.320.jpg" alt="Corded &amp; Hammer Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Toy%20Tools.html"><img src="https://periodictableoftools.com/Images/117/117.320.jpg"
+                        alt="Toy Tools"></a></td>
+            <td valign="center" align="center"><a href="Categories/Repeating%20&amp;%20Impact%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/118/118.320.jpg" alt="Repeating &amp; Impact Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Rulers.html"><img src="https://periodictableoftools.com/Images/057/057.320.jpg"
+                        alt="Rulers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Area%20Rulers.html"><img src="https://periodictableoftools.com/Images/058/058.320.jpg"
+                        alt="Area Rulers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Tape%20Measures.html"><img
+                        src="https://periodictableoftools.com/Images/059/059.320.jpg" alt="Tape Measures"></a></td>
+            <td valign="center" align="center"><a href="Categories/Protractors.html"><img src="https://periodictableoftools.com/Images/060/060.320.jpg"
+                        alt="Protractors"></a></td>
+            <td valign="center" align="center"><a href="Categories/Levels.html"><img src="https://periodictableoftools.com/Images/061/061.320.jpg"
+                        alt="Levels"></a></td>
+            <td valign="center" align="center"><a href="Categories/Calipers.html"><img src="https://periodictableoftools.com/Images/062/062.320.jpg"
+                        alt="Calipers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Measuring%20Calipers.html"><img
+                        src="https://periodictableoftools.com/Images/063/063.320.jpg" alt="Measuring Calipers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Thickness%20Gauges.html"><img
+                        src="https://periodictableoftools.com/Images/064/064.320.jpg" alt="Thickness Gauges"></a></td>
+            <td valign="center" align="center"><a href="Categories/Dial%20Indicators.html"><img
+                        src="https://periodictableoftools.com/Images/065/065.320.jpg" alt="Dial Indicators"></a></td>
+            <td valign="center" align="center"><a href="Categories/Micrometers.html"><img src="https://periodictableoftools.com/Images/066/066.320.jpg"
+                        alt="Micrometers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Special%20Micrometers.html"><img
+                        src="https://periodictableoftools.com/Images/067/067.320.jpg" alt="Special Micrometers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Height%20&amp;%20Depth%20Gauges.html"><img
+                        src="https://periodictableoftools.com/Images/068/068.320.jpg" alt="Height &amp; Depth Gauges"></a></td>
+            <td valign="center" align="center"><a href="Categories/Granite%20Flats.html"><img
+                        src="https://periodictableoftools.com/Images/069/069.320.jpg" alt="Granite Flats"></a></td>
+            <td valign="center" align="center"><a href="Categories/Mikrokator.html"><img src="https://periodictableoftools.com/Images/070/070.320.jpg"
+                        alt="Mikrokator"></a></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Grabbers.html"><img src="https://periodictableoftools.com/Images/089/089.320.jpg"
+                        alt="Grabbers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pliers.html"><img src="https://periodictableoftools.com/Images/090/090.320.jpg"
+                        alt="Pliers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd%20Pliers.html"><img src="https://periodictableoftools.com/Images/091/091.320.jpg"
+                        alt="Odd Pliers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Plier-Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/092/092.320.jpg" alt="Plier-Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Vise-Grips.html"><img src="https://periodictableoftools.com/Images/093/093.320.jpg"
+                        alt="Vise-Grips"></a></td>
+            <td valign="center" align="center"><a href="Categories/Delicate%20Clamps.html"><img
+                        src="https://periodictableoftools.com/Images/094/094.320.jpg" alt="Delicate Clamps"></a></td>
+            <td valign="center" align="center"><a href="Categories/Rough%20Clamps.html"><img
+                        src="https://periodictableoftools.com/Images/095/095.320.jpg" alt="Rough Clamps"></a></td>
+            <td valign="center" align="center"><a href="Categories/Small%20Vises.html"><img src="https://periodictableoftools.com/Images/096/096.320.jpg"
+                        alt="Small Vises"></a></td>
+            <td valign="center" align="center"><a href="Categories/Big%20Vises.html"><img src="https://periodictableoftools.com/Images/097/097.320.jpg"
+                        alt="Big Vises"></a></td>
+            <td valign="center" align="center"><a href="Categories/Special%20Vises.html"><img
+                        src="https://periodictableoftools.com/Images/098/098.320.jpg" alt="Special Vises"></a></td>
+            <td valign="center" align="center"><a href="Categories/Presses.html"><img src="https://periodictableoftools.com/Images/099/099.320.jpg"
+                        alt="Presses"></a></td>
+            <td valign="center" align="center"><a href="Categories/Spreaders.html"><img src="https://periodictableoftools.com/Images/100/100.320.jpg"
+                        alt="Spreaders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Jacks.html"><img src="https://periodictableoftools.com/Images/101/101.320.jpg"
+                        alt="Jacks"></a></td>
+            <td valign="center" align="center"><a href="Categories/Multi-Tools.html"><img src="https://periodictableoftools.com/Images/102/102.320.jpg"
+                        alt="Multi-Tools"></a></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<table id="expand">
+    <tbody>
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Basic%20Hammers.html"><img
+                        src="https://periodictableoftools.com/Images/001/001.320.jpg" alt="Basic Hammers"></a></td>
+            <td colspan="16" valign="center" align="center"><img style="max-width:2560"
+                    src="https://periodictableoftools.com/Images/TitleBanner/TitleBanner.2560.jpg" alt="Title Banner" width="2560"></td>
+            <td valign="center" align="center"><a href="Categories/Driver%20Bits.html"><img src="https://periodictableoftools.com/Images/002/002.320.jpg"
+                        alt="Driver Bits"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Fancy%20Hammers.html"><img
+                        src="https://periodictableoftools.com/Images/003/003.320.jpg" alt="Fancy Hammers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Punches%20&amp;%20Stamps.html"><img
+                        src="https://periodictableoftools.com/Images/004/004.320.jpg" alt="Punches &amp; Stamps"></a></td>
+            <td>&nbsp;</td>
+            <td colspan="8" rowspan="2" valign="center" align="center"><img style="max-width:1120"
+                    src="https://periodictableoftools.com/Images/PosterBanner/PosterBanner.2560.jpg" alt="Buy This Poster Banner" width="2560"></td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Twist%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/005/005.320.jpg" alt="Twist Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Even-Sided%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/006/006.320.jpg" alt="Even-Sided Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd-Sided%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/007/007.320.jpg" alt="Odd-Sided Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pipe%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/008/008.320.jpg" alt="Pipe Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Soldering.html"><img src="https://periodictableoftools.com/Images/009/009.320.jpg"
+                        alt="Soldering"></a></td>
+            <td valign="center" align="center"><a href="Categories/Basic%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/010/010.320.jpg" alt="Basic Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Mallets.html"><img src="https://periodictableoftools.com/Images/011/011.320.jpg"
+                        alt="Mallets"></a></td>
+            <td valign="center" align="center"><a href="Categories/Rivets.html"><img src="https://periodictableoftools.com/Images/012/012.320.jpg"
+                        alt="Rivets"></a></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Forstner%20Bits.html"><img
+                        src="https://periodictableoftools.com/Images/013/013.320.jpg" alt="Forstner Bits"></a></td>
+            <td valign="center" align="center"><a href="Categories/Hollow%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/014/014.320.jpg" alt="Hollow Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Crescent%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/015/015.320.jpg" alt="Crescent Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/016/016.320.jpg" alt="Odd Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Welding.html"><img src="https://periodictableoftools.com/Images/017/017.320.jpg"
+                        alt="Welding"></a></td>
+            <td valign="center" align="center"><a href="Categories/Multi%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/018/018.320.jpg" alt="Multi Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Sledges%20and%20Axes.html"><img
+                        src="https://periodictableoftools.com/Images/019/019.320.jpg" alt="Sledges and Axes"></a></td>
+            <td valign="center" align="center"><a href="Categories/Manual%20Nailers%20&amp;%20Staplers.html"><img
+                        src="https://periodictableoftools.com/Images/020/020.320.jpg" alt="Manual Nailers &amp; Staplers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Knives.html"><img src="https://periodictableoftools.com/Images/021/021.320.jpg"
+                        alt="Knives"></a></td>
+            <td valign="center" align="center"><a href="Categories/Scrapers.html"><img src="https://periodictableoftools.com/Images/022/022.320.jpg"
+                        alt="Scrapers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Files.html"><img src="https://periodictableoftools.com/Images/023/023.320.jpg"
+                        alt="Files"></a></td>
+            <td valign="center" align="center"><a href="Categories/Snips.html"><img src="https://periodictableoftools.com/Images/024/024.320.jpg"
+                        alt="Snips"></a></td>
+            <td valign="center" align="center"><a href="Categories/Nippers.html"><img src="https://periodictableoftools.com/Images/025/025.320.jpg"
+                        alt="Nippers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Wood%20Saws.html"><img src="https://periodictableoftools.com/Images/026/026.320.jpg"
+                        alt="Wood Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Hacksaws.html"><img src="https://periodictableoftools.com/Images/027/027.320.jpg"
+                        alt="Hacksaws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Saw%20Teeth.html"><img src="https://periodictableoftools.com/Images/028/028.320.jpg"
+                        alt="Saw Teeth"></a></td>
+            <td valign="center" align="center"><a href="Categories/Copper%20Tools.html"><img
+                        src="https://periodictableoftools.com/Images/029/029.320.jpg" alt="Copper Tools"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd%20Saws.html"><img src="https://periodictableoftools.com/Images/030/030.320.jpg"
+                        alt="Odd Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Masonry%20Bits.html"><img
+                        src="https://periodictableoftools.com/Images/031/031.320.jpg" alt="Masonry Bits"></a></td>
+            <td valign="center" align="center"><a href="Categories/Eggbeater%20&amp;%20Brace%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/032/032.320.jpg" alt="Eggbeater &amp; Brace Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Socket%20Sets.html"><img src="https://periodictableoftools.com/Images/033/033.320.jpg"
+                        alt="Socket Sets"></a></td>
+            <td valign="center" align="center"><a href="Categories/Ratchet%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/034/034.320.jpg" alt="Ratchet Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Casting.html"><img src="https://periodictableoftools.com/Images/035/035.320.jpg"
+                        alt="Casting"></a></td>
+            <td valign="center" align="center"><a href="Categories/Driver%20Sets.html"><img src="https://periodictableoftools.com/Images/036/036.320.jpg"
+                        alt="Driver Sets"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Picks%20and%20Pry%20Bars.html"><img
+                        src="https://periodictableoftools.com/Images/037/037.320.jpg" alt="Picks and Pry Bars"></a></td>
+            <td valign="center" align="center"><a href="Categories/Power%20Nailers%20&amp;%20Staplers.html"><img
+                        src="https://periodictableoftools.com/Images/038/038.320.jpg" alt="Power Nailers &amp; Staplers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Chisels.html"><img src="https://periodictableoftools.com/Images/039/039.320.jpg"
+                        alt="Chisels"></a></td>
+            <td valign="center" align="center"><a href="Categories/Scribes%20and%20Awls.html"><img
+                        src="https://periodictableoftools.com/Images/040/040.320.jpg" alt="Scribes and Awls"></a></td>
+            <td valign="center" align="center"><a href="Categories/Routers.html"><img src="https://periodictableoftools.com/Images/041/041.320.jpg"
+                        alt="Routers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Wire%20Cutters%20&amp;%20Strippers.html"><img
+                        src="https://periodictableoftools.com/Images/042/042.320.jpg" alt="Wire Cutters &amp; Strippers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Loppers.html"><img src="https://periodictableoftools.com/Images/043/043.320.jpg"
+                        alt="Loppers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pipe%20Cutters.html"><img
+                        src="https://periodictableoftools.com/Images/044/044.320.jpg" alt="Pipe Cutters"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bow%20Saws.html"><img src="https://periodictableoftools.com/Images/045/045.320.jpg"
+                        alt="Bow Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Jigsaws.html"><img src="https://periodictableoftools.com/Images/046/046.320.jpg"
+                        alt="Jigsaws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Circular%20Saws.html"><img
+                        src="https://periodictableoftools.com/Images/047/047.320.jpg" alt="Circular Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Saws%20for%20Jointing.html"><img
+                        src="https://periodictableoftools.com/Images/048/048.320.jpg" alt="Saws for Jointing"></a></td>
+            <td valign="center" align="center"><a href="Categories/Reamers.html"><img src="https://periodictableoftools.com/Images/049/049.320.jpg"
+                        alt="Reamers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Threading.html"><img src="https://periodictableoftools.com/Images/050/050.320.jpg"
+                        alt="Threading"></a></td>
+            <td valign="center" align="center"><a href="Categories/Cordless%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/051/051.320.jpg" alt="Cordless Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Torque%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/052/052.320.jpg" alt="Torque Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Laser%20Cutters%20&amp;%203D%20Printers.html"><img
+                        src="https://periodictableoftools.com/Images/053/053.320.jpg" alt="Laser Cutters &amp; 3D Printers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Swiss%20Army%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/054/054.320.jpg" alt="Swiss Army Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Power%20Hammers.html"><img
+                        src="https://periodictableoftools.com/Images/055/055.320.jpg" alt="Power Hammers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Exotic%20Nailers.html"><img
+                        src="https://periodictableoftools.com/Images/056/056.320.jpg" alt="Exotic Nailers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Hand%20Grinders.html"><img
+                        src="https://periodictableoftools.com/Images/071/071.320.jpg" alt="Hand Grinders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Sanders.html"><img src="https://periodictableoftools.com/Images/072/072.320.jpg"
+                        alt="Sanders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Lathes.html"><img src="https://periodictableoftools.com/Images/073/073.320.jpg"
+                        alt="Lathes"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bolt%20Cutters.html"><img
+                        src="https://periodictableoftools.com/Images/074/074.320.jpg" alt="Bolt Cutters"></a></td>
+            <td valign="center" align="center"><a href="Categories/Punch%20&amp;%20Dies.html"><img
+                        src="https://periodictableoftools.com/Images/075/075.320.jpg" alt="Punch &amp; Dies"></a></td>
+            <td valign="center" align="center"><a href="Categories/Air%20Pressure.html"><img
+                        src="https://periodictableoftools.com/Images/076/076.320.jpg" alt="Air Pressure"></a></td>
+            <td valign="center" align="center"><a href="Categories/Crazy%20Saws.html"><img src="https://periodictableoftools.com/Images/077/077.320.jpg"
+                        alt="Crazy Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Reciprocating%20Saws.html"><img
+                        src="https://periodictableoftools.com/Images/078/078.320.jpg" alt="Reciprocating Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Miter%20Saws.html"><img src="https://periodictableoftools.com/Images/079/079.320.jpg"
+                        alt="Miter Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bandsaws.html"><img src="https://periodictableoftools.com/Images/080/080.320.jpg"
+                        alt="Bandsaws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Augers%20&amp;%20Spades.html"><img
+                        src="https://periodictableoftools.com/Images/081/081.320.jpg" alt="Augers &amp; Spades"></a></td>
+            <td valign="center" align="center"><a href="Categories/Chucks.html"><img src="https://periodictableoftools.com/Images/082/082.320.jpg"
+                        alt="Chucks"></a></td>
+            <td valign="center" align="center"><a href="Categories/Angle%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/083/083.320.jpg" alt="Angle Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Impact%20Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/084/084.320.jpg" alt="Impact Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Optical%20Instruments.html"><img
+                        src="https://periodictableoftools.com/Images/085/085.320.jpg" alt="Optical Instruments"></a></td>
+            <td valign="center" align="center"><a href="Categories/Screw%20Guns.html"><img src="https://periodictableoftools.com/Images/086/086.320.jpg"
+                        alt="Screw Guns"></a></td>
+        </tr>
+
+        <tr>
+            <td valign="center" align="center"><a href="Categories/Unhammerers.html"><img src="https://periodictableoftools.com/Images/087/087.320.jpg"
+                        alt="Unhammerers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Sewing.html"><img src="https://periodictableoftools.com/Images/088/088.320.jpg"
+                        alt="Sewing"></a></td>
+            <td valign="center" align="center"><a href="Categories/Bench%20Grinders.html"><img
+                        src="https://periodictableoftools.com/Images/103/103.320.jpg" alt="Bench Grinders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Planes.html"><img src="https://periodictableoftools.com/Images/104/104.320.jpg"
+                        alt="Planes"></a></td>
+            <td valign="center" align="center"><a href="Categories/Milling%20Machines.html"><img
+                        src="https://periodictableoftools.com/Images/105/105.320.jpg" alt="Milling Machines"></a></td>
+            <td valign="center" align="center"><a href="Categories/Shears.html"><img src="https://periodictableoftools.com/Images/106/106.320.jpg"
+                        alt="Shears"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pantographs.html"><img src="https://periodictableoftools.com/Images/107/107.320.jpg"
+                        alt="Pantographs"></a></td>
+            <td valign="center" align="center"><a href="Categories/Jigs%20and%20Templates.html"><img
+                        src="https://periodictableoftools.com/Images/108/108.320.jpg" alt="Jigs and Templates"></a></td>
+            <td valign="center" align="center"><a href="Categories/Chain%20Saws.html"><img src="https://periodictableoftools.com/Images/109/109.320.jpg"
+                        alt="Chain Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Scroll%20Saws.html"><img src="https://periodictableoftools.com/Images/110/110.320.jpg"
+                        alt="Scroll Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Radial%20Arm%20&amp;%20Table%20Saws.html"><img
+                        src="https://periodictableoftools.com/Images/111/111.320.jpg" alt="Radial Arm &amp; Table Saws"></a></td>
+            <td valign="center" align="center"><a href="Categories/Other.html"><img src="https://periodictableoftools.com/Images/112/112.320.jpg"
+                        alt="Other"></a></td>
+            <td valign="center" align="center"><a href="Categories/Antique%20Augers.html"><img
+                        src="https://periodictableoftools.com/Images/113/113.320.jpg" alt="Antique Augers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Drill%20Presses.html"><img
+                        src="https://periodictableoftools.com/Images/114/114.320.jpg" alt="Drill Presses"></a></td>
+            <td valign="center" align="center"><a href="Categories/Big%20Drills.html"><img src="https://periodictableoftools.com/Images/115/115.320.jpg"
+                        alt="Big Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Corded%20&amp;%20Hammer%20Drills.html"><img
+                        src="https://periodictableoftools.com/Images/116/116.320.jpg" alt="Corded &amp; Hammer Drills"></a></td>
+            <td valign="center" align="center"><a href="Categories/Toy%20Tools.html"><img src="https://periodictableoftools.com/Images/117/117.320.jpg"
+                        alt="Toy Tools"></a></td>
+            <td valign="center" align="center"><a href="Categories/Repeating%20&amp;%20Impact%20Drivers.html"><img
+                        src="https://periodictableoftools.com/Images/118/118.320.jpg" alt="Repeating &amp; Impact Drivers"></a></td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Rulers.html"><img src="https://periodictableoftools.com/Images/057/057.320.jpg"
+                        alt="Rulers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Area%20Rulers.html"><img src="https://periodictableoftools.com/Images/058/058.320.jpg"
+                        alt="Area Rulers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Tape%20Measures.html"><img
+                        src="https://periodictableoftools.com/Images/059/059.320.jpg" alt="Tape Measures"></a></td>
+            <td valign="center" align="center"><a href="Categories/Protractors.html"><img src="https://periodictableoftools.com/Images/060/060.320.jpg"
+                        alt="Protractors"></a></td>
+            <td valign="center" align="center"><a href="Categories/Levels.html"><img src="https://periodictableoftools.com/Images/061/061.320.jpg"
+                        alt="Levels"></a></td>
+            <td valign="center" align="center"><a href="Categories/Calipers.html"><img src="https://periodictableoftools.com/Images/062/062.320.jpg"
+                        alt="Calipers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Measuring%20Calipers.html"><img
+                        src="https://periodictableoftools.com/Images/063/063.320.jpg" alt="Measuring Calipers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Thickness%20Gauges.html"><img
+                        src="https://periodictableoftools.com/Images/064/064.320.jpg" alt="Thickness Gauges"></a></td>
+            <td valign="center" align="center"><a href="Categories/Dial%20Indicators.html"><img
+                        src="https://periodictableoftools.com/Images/065/065.320.jpg" alt="Dial Indicators"></a></td>
+            <td valign="center" align="center"><a href="Categories/Micrometers.html"><img src="https://periodictableoftools.com/Images/066/066.320.jpg"
+                        alt="Micrometers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Special%20Micrometers.html"><img
+                        src="https://periodictableoftools.com/Images/067/067.320.jpg" alt="Special Micrometers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Height%20&amp;%20Depth%20Gauges.html"><img
+                        src="https://periodictableoftools.com/Images/068/068.320.jpg" alt="Height &amp; Depth Gauges"></a></td>
+            <td valign="center" align="center"><a href="Categories/Granite%20Flats.html"><img
+                        src="https://periodictableoftools.com/Images/069/069.320.jpg" alt="Granite Flats"></a></td>
+            <td valign="center" align="center"><a href="Categories/Mikrokator.html"><img src="https://periodictableoftools.com/Images/070/070.320.jpg"
+                        alt="Mikrokator"></a></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="center" align="center"><a href="Categories/Grabbers.html"><img src="https://periodictableoftools.com/Images/089/089.320.jpg"
+                        alt="Grabbers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Pliers.html"><img src="https://periodictableoftools.com/Images/090/090.320.jpg"
+                        alt="Pliers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Odd%20Pliers.html"><img src="https://periodictableoftools.com/Images/091/091.320.jpg"
+                        alt="Odd Pliers"></a></td>
+            <td valign="center" align="center"><a href="Categories/Plier-Wrenches.html"><img
+                        src="https://periodictableoftools.com/Images/092/092.320.jpg" alt="Plier-Wrenches"></a></td>
+            <td valign="center" align="center"><a href="Categories/Vise-Grips.html"><img src="https://periodictableoftools.com/Images/093/093.320.jpg"
+                        alt="Vise-Grips"></a></td>
+            <td valign="center" align="center"><a href="Categories/Delicate%20Clamps.html"><img
+                        src="https://periodictableoftools.com/Images/094/094.320.jpg" alt="Delicate Clamps"></a></td>
+            <td valign="center" align="center"><a href="Categories/Rough%20Clamps.html"><img
+                        src="https://periodictableoftools.com/Images/095/095.320.jpg" alt="Rough Clamps"></a></td>
+            <td valign="center" align="center"><a href="Categories/Small%20Vises.html"><img src="https://periodictableoftools.com/Images/096/096.320.jpg"
+                        alt="Small Vises"></a></td>
+            <td valign="center" align="center"><a href="Categories/Big%20Vises.html"><img src="https://periodictableoftools.com/Images/097/097.320.jpg"
+                        alt="Big Vises"></a></td>
+            <td valign="center" align="center"><a href="Categories/Special%20Vises.html"><img
+                        src="https://periodictableoftools.com/Images/098/098.320.jpg" alt="Special Vises"></a></td>
+            <td valign="center" align="center"><a href="Categories/Presses.html"><img src="https://periodictableoftools.com/Images/099/099.320.jpg"
+                        alt="Presses"></a></td>
+            <td valign="center" align="center"><a href="Categories/Spreaders.html"><img src="https://periodictableoftools.com/Images/100/100.320.jpg"
+                        alt="Spreaders"></a></td>
+            <td valign="center" align="center"><a href="Categories/Jacks.html"><img src="https://periodictableoftools.com/Images/101/101.320.jpg"
+                        alt="Jacks"></a></td>
+            <td valign="center" align="center"><a href="Categories/Multi-Tools.html"><img src="https://periodictableoftools.com/Images/102/102.320.jpg"
+                        alt="Multi-Tools"></a></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div id="groups">
     <br><br>
-    <img id="list-poster" style="width:60vw;"
-                        src="https://periodictableoftools.com/Images/PosterBanner/PosterBanner.2560.jpg"
-                        alt="Buy This Poster Banner" width="2560">
-    <table>
-        <tbody>
-            <tr>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Basic%20Hammers.html"><img
-                            src="https://periodictableoftools.com/Images/001/001.320.jpg" alt="Basic Hammers"></a></td>
-                <td colspan="16" valign="center" align="center"><img style="max-width:84.4vw;"
-                        src="https://periodictableoftools.com/Images/TitleBanner/TitleBanner.2560.jpg"
-                        alt="Title Banner" width="2560"></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Driver%20Bits.html"><img
-                            src="https://periodictableoftools.com/Images/002/002.320.jpg" alt="Driver Bits"></a></td>
-            </tr>
-
-            <tr>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Fancy%20Hammers.html"><img
-                            src="https://periodictableoftools.com/Images/003/003.320.jpg" alt="Fancy Hammers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Punches%20&amp;%20Stamps.html"><img
-                            src="https://periodictableoftools.com/Images/004/004.320.jpg"
-                            alt="Punches &amp; Stamps"></a></td>
-                <td>&nbsp;</td>
-                <td colspan="8" rowspan="2" valign="center" align="center"><img id="table-poster" style="max-width:37.8vw;"
-                        src="https://periodictableoftools.com/Images/PosterBanner/PosterBanner.2560.jpg"
-                        alt="Buy This Poster Banner" width="2560"></td>
-                <td>&nbsp;</td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Twist%20Drills.html"><img
-                            src="https://periodictableoftools.com/Images/005/005.320.jpg" alt="Twist Drills"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Even-Sided%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/006/006.320.jpg" alt="Even-Sided Wrenches"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Odd-Sided%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/007/007.320.jpg" alt="Odd-Sided Wrenches"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Pipe%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/008/008.320.jpg" alt="Pipe Wrenches"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Soldering.html"><img
-                            src="https://periodictableoftools.com/Images/009/009.320.jpg" alt="Soldering"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Basic%20Drivers.html"><img
-                            src="https://periodictableoftools.com/Images/010/010.320.jpg" alt="Basic Drivers"></a></td>
-            </tr>
-
-            <tr>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Mallets.html"><img
-                            src="https://periodictableoftools.com/Images/011/011.320.jpg" alt="Mallets"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Rivets.html"><img
-                            src="https://periodictableoftools.com/Images/012/012.320.jpg" alt="Rivets"></a></td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Forstner%20Bits.html"><img
-                            src="https://periodictableoftools.com/Images/013/013.320.jpg" alt="Forstner Bits"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Hollow%20Drills.html"><img
-                            src="https://periodictableoftools.com/Images/014/014.320.jpg" alt="Hollow Drills"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Crescent%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/015/015.320.jpg" alt="Crescent Wrenches"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Odd%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/016/016.320.jpg" alt="Odd Wrenches"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Welding.html"><img
-                            src="https://periodictableoftools.com/Images/017/017.320.jpg" alt="Welding"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Multi%20Drivers.html"><img
-                            src="https://periodictableoftools.com/Images/018/018.320.jpg" alt="Multi Drivers"></a></td>
-            </tr>
-
-            <tr>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Sledges%20and%20Axes.html"><img
-                            src="https://periodictableoftools.com/Images/019/019.320.jpg" alt="Sledges and Axes"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Manual%20Nailers%20&amp;%20Staplers.html"><img
-                            src="https://periodictableoftools.com/Images/020/020.320.jpg"
-                            alt="Manual Nailers &amp; Staplers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Knives.html"><img
-                            src="https://periodictableoftools.com/Images/021/021.320.jpg" alt="Knives"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Scrapers.html"><img
-                            src="https://periodictableoftools.com/Images/022/022.320.jpg" alt="Scrapers"></a></td>
-                <td valign="center" align="center"><a href="https://periodictableoftools.com/Categories/Files.html"><img
-                            src="https://periodictableoftools.com/Images/023/023.320.jpg" alt="Files"></a></td>
-                <td valign="center" align="center"><a href="https://periodictableoftools.com/Categories/Snips.html"><img
-                            src="https://periodictableoftools.com/Images/024/024.320.jpg" alt="Snips"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Nippers.html"><img
-                            src="https://periodictableoftools.com/Images/025/025.320.jpg" alt="Nippers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Wood%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/026/026.320.jpg" alt="Wood Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Hacksaws.html"><img
-                            src="https://periodictableoftools.com/Images/027/027.320.jpg" alt="Hacksaws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Saw%20Teeth.html"><img
-                            src="https://periodictableoftools.com/Images/028/028.320.jpg" alt="Saw Teeth"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Copper%20Tools.html"><img
-                            src="https://periodictableoftools.com/Images/029/029.320.jpg" alt="Copper Tools"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Odd%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/030/030.320.jpg" alt="Odd Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Masonry%20Bits.html"><img
-                            src="https://periodictableoftools.com/Images/031/031.320.jpg" alt="Masonry Bits"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Eggbeater%20&amp;%20Brace%20Drills.html"><img
-                            src="https://periodictableoftools.com/Images/032/032.320.jpg"
-                            alt="Eggbeater &amp; Brace Drills"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Socket%20Sets.html"><img
-                            src="https://periodictableoftools.com/Images/033/033.320.jpg" alt="Socket Sets"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Ratchet%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/034/034.320.jpg" alt="Ratchet Wrenches"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Casting.html"><img
-                            src="https://periodictableoftools.com/Images/035/035.320.jpg" alt="Casting"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Driver%20Sets.html"><img
-                            src="https://periodictableoftools.com/Images/036/036.320.jpg" alt="Driver Sets"></a></td>
-            </tr>
-
-            <tr>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Picks%20and%20Pry%20Bars.html"><img
-                            src="https://periodictableoftools.com/Images/037/037.320.jpg" alt="Picks and Pry Bars"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Power%20Nailers%20&amp;%20Staplers.html"><img
-                            src="https://periodictableoftools.com/Images/038/038.320.jpg"
-                            alt="Power Nailers &amp; Staplers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Chisels.html"><img
-                            src="https://periodictableoftools.com/Images/039/039.320.jpg" alt="Chisels"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Scribes%20and%20Awls.html"><img
-                            src="https://periodictableoftools.com/Images/040/040.320.jpg" alt="Scribes and Awls"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Routers.html"><img
-                            src="https://periodictableoftools.com/Images/041/041.320.jpg" alt="Routers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Wire%20Cutters%20&amp;%20Strippers.html"><img
-                            src="https://periodictableoftools.com/Images/042/042.320.jpg"
-                            alt="Wire Cutters &amp; Strippers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Loppers.html"><img
-                            src="https://periodictableoftools.com/Images/043/043.320.jpg" alt="Loppers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Pipe%20Cutters.html"><img
-                            src="https://periodictableoftools.com/Images/044/044.320.jpg" alt="Pipe Cutters"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Bow%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/045/045.320.jpg" alt="Bow Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Jigsaws.html"><img
-                            src="https://periodictableoftools.com/Images/046/046.320.jpg" alt="Jigsaws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Circular%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/047/047.320.jpg" alt="Circular Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Saws%20for%20Jointing.html"><img
-                            src="https://periodictableoftools.com/Images/048/048.320.jpg" alt="Saws for Jointing"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Reamers.html"><img
-                            src="https://periodictableoftools.com/Images/049/049.320.jpg" alt="Reamers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Threading.html"><img
-                            src="https://periodictableoftools.com/Images/050/050.320.jpg" alt="Threading"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Cordless%20Drills.html"><img
-                            src="https://periodictableoftools.com/Images/051/051.320.jpg" alt="Cordless Drills"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Torque%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/052/052.320.jpg" alt="Torque Wrenches"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Laser%20Cutters%20&amp;%203D%20Printers.html"><img
-                            src="https://periodictableoftools.com/Images/053/053.320.jpg"
-                            alt="Laser Cutters &amp; 3D Printers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Swiss%20Army%20Drivers.html"><img
-                            src="https://periodictableoftools.com/Images/054/054.320.jpg" alt="Swiss Army Drivers"></a>
-                </td>
-            </tr>
-
-            <tr>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Power%20Hammers.html"><img
-                            src="https://periodictableoftools.com/Images/055/055.320.jpg" alt="Power Hammers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Exotic%20Nailers.html"><img
-                            src="https://periodictableoftools.com/Images/056/056.320.jpg" alt="Exotic Nailers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Hand%20Grinders.html"><img
-                            src="https://periodictableoftools.com/Images/071/071.320.jpg" alt="Hand Grinders"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Sanders.html"><img
-                            src="https://periodictableoftools.com/Images/072/072.320.jpg" alt="Sanders"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Lathes.html"><img
-                            src="https://periodictableoftools.com/Images/073/073.320.jpg" alt="Lathes"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Bolt%20Cutters.html"><img
-                            src="https://periodictableoftools.com/Images/074/074.320.jpg" alt="Bolt Cutters"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Punch%20&amp;%20Dies.html"><img
-                            src="https://periodictableoftools.com/Images/075/075.320.jpg" alt="Punch &amp; Dies"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Air%20Pressure.html"><img
-                            src="https://periodictableoftools.com/Images/076/076.320.jpg" alt="Air Pressure"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Crazy%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/077/077.320.jpg" alt="Crazy Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Reciprocating%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/078/078.320.jpg" alt="Reciprocating Saws"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Miter%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/079/079.320.jpg" alt="Miter Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Bandsaws.html"><img
-                            src="https://periodictableoftools.com/Images/080/080.320.jpg" alt="Bandsaws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Augers%20&amp;%20Spades.html"><img
-                            src="https://periodictableoftools.com/Images/081/081.320.jpg" alt="Augers &amp; Spades"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Chucks.html"><img
-                            src="https://periodictableoftools.com/Images/082/082.320.jpg" alt="Chucks"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Angle%20Drills.html"><img
-                            src="https://periodictableoftools.com/Images/083/083.320.jpg" alt="Angle Drills"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Impact%20Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/084/084.320.jpg" alt="Impact Wrenches"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Optical%20Instruments.html"><img
-                            src="https://periodictableoftools.com/Images/085/085.320.jpg" alt="Optical Instruments"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Screw%20Guns.html"><img
-                            src="https://periodictableoftools.com/Images/086/086.320.jpg" alt="Screw Guns"></a></td>
-            </tr>
-
-            <tr>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Unhammerers.html"><img
-                            src="https://periodictableoftools.com/Images/087/087.320.jpg" alt="Unhammerers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Sewing.html"><img
-                            src="https://periodictableoftools.com/Images/088/088.320.jpg" alt="Sewing"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Bench%20Grinders.html"><img
-                            src="https://periodictableoftools.com/Images/103/103.320.jpg" alt="Bench Grinders"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Planes.html"><img
-                            src="https://periodictableoftools.com/Images/104/104.320.jpg" alt="Planes"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Milling%20Machines.html"><img
-                            src="https://periodictableoftools.com/Images/105/105.320.jpg" alt="Milling Machines"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Shears.html"><img
-                            src="https://periodictableoftools.com/Images/106/106.320.jpg" alt="Shears"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Pantographs.html"><img
-                            src="https://periodictableoftools.com/Images/107/107.320.jpg" alt="Pantographs"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Jigs%20and%20Templates.html"><img
-                            src="https://periodictableoftools.com/Images/108/108.320.jpg" alt="Jigs and Templates"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Chain%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/109/109.320.jpg" alt="Chain Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Scroll%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/110/110.320.jpg" alt="Scroll Saws"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Radial%20Arm%20&amp;%20Table%20Saws.html"><img
-                            src="https://periodictableoftools.com/Images/111/111.320.jpg"
-                            alt="Radial Arm &amp; Table Saws"></a></td>
-                <td valign="center" align="center"><a href="https://periodictableoftools.com/Categories/Other.html"><img
-                            src="https://periodictableoftools.com/Images/112/112.320.jpg" alt="Other"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Antique%20Augers.html"><img
-                            src="https://periodictableoftools.com/Images/113/113.320.jpg" alt="Antique Augers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Drill%20Presses.html"><img
-                            src="https://periodictableoftools.com/Images/114/114.320.jpg" alt="Drill Presses"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Big%20Drills.html"><img
-                            src="https://periodictableoftools.com/Images/115/115.320.jpg" alt="Big Drills"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Corded%20&amp;%20Hammer%20Drills.html"><img
-                            src="https://periodictableoftools.com/Images/116/116.320.jpg"
-                            alt="Corded &amp; Hammer Drills"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Toy%20Tools.html"><img
-                            src="https://periodictableoftools.com/Images/117/117.320.jpg" alt="Toy Tools"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Repeating%20&amp;%20Impact%20Drivers.html"><img
-                            src="https://periodictableoftools.com/Images/118/118.320.jpg"
-                            alt="Repeating &amp; Impact Drivers"></a></td>
-            </tr>
-
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Rulers.html"><img
-                            src="https://periodictableoftools.com/Images/057/057.320.jpg" alt="Rulers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Area%20Rulers.html"><img
-                            src="https://periodictableoftools.com/Images/058/058.320.jpg" alt="Area Rulers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Tape%20Measures.html"><img
-                            src="https://periodictableoftools.com/Images/059/059.320.jpg" alt="Tape Measures"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Protractors.html"><img
-                            src="https://periodictableoftools.com/Images/060/060.320.jpg" alt="Protractors"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Levels.html"><img
-                            src="https://periodictableoftools.com/Images/061/061.320.jpg" alt="Levels"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Calipers.html"><img
-                            src="https://periodictableoftools.com/Images/062/062.320.jpg" alt="Calipers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Measuring%20Calipers.html"><img
-                            src="https://periodictableoftools.com/Images/063/063.320.jpg" alt="Measuring Calipers"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Thickness%20Gauges.html"><img
-                            src="https://periodictableoftools.com/Images/064/064.320.jpg" alt="Thickness Gauges"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Dial%20Indicators.html"><img
-                            src="https://periodictableoftools.com/Images/065/065.320.jpg" alt="Dial Indicators"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Micrometers.html"><img
-                            src="https://periodictableoftools.com/Images/066/066.320.jpg" alt="Micrometers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Special%20Micrometers.html"><img
-                            src="https://periodictableoftools.com/Images/067/067.320.jpg" alt="Special Micrometers"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Height%20&amp;%20Depth%20Gauges.html"><img
-                            src="https://periodictableoftools.com/Images/068/068.320.jpg"
-                            alt="Height &amp; Depth Gauges"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Granite%20Flats.html"><img
-                            src="https://periodictableoftools.com/Images/069/069.320.jpg" alt="Granite Flats"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Mikrokator.html"><img
-                            src="https://periodictableoftools.com/Images/070/070.320.jpg" alt="Mikrokator"></a></td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Grabbers.html"><img
-                            src="https://periodictableoftools.com/Images/089/089.320.jpg" alt="Grabbers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Pliers.html"><img
-                            src="https://periodictableoftools.com/Images/090/090.320.jpg" alt="Pliers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Odd%20Pliers.html"><img
-                            src="https://periodictableoftools.com/Images/091/091.320.jpg" alt="Odd Pliers"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Plier-Wrenches.html"><img
-                            src="https://periodictableoftools.com/Images/092/092.320.jpg" alt="Plier-Wrenches"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Vise-Grips.html"><img
-                            src="https://periodictableoftools.com/Images/093/093.320.jpg" alt="Vise-Grips"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Delicate%20Clamps.html"><img
-                            src="https://periodictableoftools.com/Images/094/094.320.jpg" alt="Delicate Clamps"></a>
-                </td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Rough%20Clamps.html"><img
-                            src="https://periodictableoftools.com/Images/095/095.320.jpg" alt="Rough Clamps"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Small%20Vises.html"><img
-                            src="https://periodictableoftools.com/Images/096/096.320.jpg" alt="Small Vises"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Big%20Vises.html"><img
-                            src="https://periodictableoftools.com/Images/097/097.320.jpg" alt="Big Vises"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Special%20Vises.html"><img
-                            src="https://periodictableoftools.com/Images/098/098.320.jpg" alt="Special Vises"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Presses.html"><img
-                            src="https://periodictableoftools.com/Images/099/099.320.jpg" alt="Presses"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Spreaders.html"><img
-                            src="https://periodictableoftools.com/Images/100/100.320.jpg" alt="Spreaders"></a></td>
-                <td valign="center" align="center"><a href="https://periodictableoftools.com/Categories/Jacks.html"><img
-                            src="https://periodictableoftools.com/Images/101/101.320.jpg" alt="Jacks"></a></td>
-                <td valign="center" align="center"><a
-                        href="https://periodictableoftools.com/Categories/Multi-Tools.html"><img
-                            src="https://periodictableoftools.com/Images/102/102.320.jpg" alt="Multi-Tools"></a></td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-
-        </tbody>
-    </table>
+    <img style="max-width:60vw; width:60vw;" src="https://periodictableoftools.com/Images/PosterBanner/PosterBanner.2560.jpg"
+        alt="Buy This Poster Banner" width="2560">
+    <br><br>
+    <h1>Hammers and Other Hitting Tools</h1><a href="../Categories/Basic%20Hammers.html"><img
+            src="https://periodictableoftools.com/Images/001/001.640.jpg" alt="Basic Hammers" width="30%"></a><a
+        href="../Categories/Fancy%20Hammers.html"><img src="https://periodictableoftools.com/Images/003/003.640.jpg" alt="Fancy Hammers"
+            width="30%"></a><a href="../Categories/Mallets.html"><img src="https://periodictableoftools.com/Images/011/011.640.jpg" alt="Mallets"
+            width="30%"></a><a href="../Categories/Sledges%20and%20Axes.html"><img src="https://periodictableoftools.com/Images/019/019.640.jpg"
+            alt="Sledges and Axes" width="30%"></a><a href="../Categories/Picks%20and%20Pry%20Bars.html"><img
+            src="https://periodictableoftools.com/Images/037/037.640.jpg" alt="Picks and Pry Bars" width="30%"></a><a
+        href="../Categories/Power%20Hammers.html"><img src="https://periodictableoftools.com/Images/055/055.640.jpg" alt="Power Hammers"
+            width="30%"></a><a href="../Categories/Unhammerers.html"><img src="https://periodictableoftools.com/Images/087/087.640.jpg" alt="Unhammerers"
+            width="30%"></a>
+    <h1>Targets (Punches, Nails, Rivets)</h1><a href="../Categories/Punches%20&amp;%20Stamps.html"><img
+            src="https://periodictableoftools.com/Images/004/004.640.jpg" alt="Punches &amp; Stamps" width="30%"></a><a
+        href="../Categories/Rivets.html"><img src="https://periodictableoftools.com/Images/012/012.640.jpg" alt="Rivets" width="30%"></a><a
+        href="../Categories/Manual%20Nailers%20&amp;%20Staplers.html"><img src="https://periodictableoftools.com/Images/020/020.640.jpg"
+            alt="Manual Nailers &amp; Staplers" width="30%"></a><a
+        href="../Categories/Power%20Nailers%20&amp;%20Staplers.html"><img src="https://periodictableoftools.com/Images/038/038.640.jpg"
+            alt="Power Nailers &amp; Staplers" width="30%"></a><a href="../Categories/Exotic%20Nailers.html"><img
+            src="https://periodictableoftools.com/Images/056/056.640.jpg" alt="Exotic Nailers" width="30%"></a>
+    <h1>Cutting, Grinding, and Sanding Tools</h1><a href="../Categories/Knives.html"><img src="https://periodictableoftools.com/Images/021/021.640.jpg"
+            alt="Knives" width="30%"></a><a href="../Categories/Chisels.html"><img src="https://periodictableoftools.com/Images/039/039.640.jpg"
+            alt="Chisels" width="30%"></a><a href="../Categories/Hand%20Grinders.html"><img src="https://periodictableoftools.com/Images/071/071.640.jpg"
+            alt="Hand Grinders" width="30%"></a><a href="../Categories/Bench%20Grinders.html"><img
+            src="https://periodictableoftools.com/Images/103/103.640.jpg" alt="Bench Grinders" width="30%"></a><a href="../Categories/Scrapers.html"><img
+            src="https://periodictableoftools.com/Images/022/022.640.jpg" alt="Scrapers" width="30%"></a><a
+        href="../Categories/Scribes%20and%20Awls.html"><img src="https://periodictableoftools.com/Images/040/040.640.jpg" alt="Scribes and Awls"
+            width="30%"></a><a href="../Categories/Sanders.html"><img src="https://periodictableoftools.com/Images/072/072.640.jpg" alt="Sanders"
+            width="30%"></a><a href="../Categories/Planes.html"><img src="https://periodictableoftools.com/Images/104/104.640.jpg" alt="Planes"
+            width="30%"></a><a href="../Categories/Files.html"><img src="https://periodictableoftools.com/Images/023/023.640.jpg" alt="Files"
+            width="30%"></a><a href="../Categories/Routers.html"><img src="https://periodictableoftools.com/Images/041/041.640.jpg" alt="Routers"
+            width="30%"></a><a href="../Categories/Lathes.html"><img src="https://periodictableoftools.com/Images/073/073.640.jpg" alt="Lathes"
+            width="30%"></a><a href="../Categories/Milling%20Machines.html"><img src="https://periodictableoftools.com/Images/105/105.640.jpg"
+            alt="Milling Machines" width="30%"></a><a href="../Categories/Snips.html"><img src="https://periodictableoftools.com/Images/024/024.640.jpg"
+            alt="Snips" width="30%"></a><a href="../Categories/Wire%20Cutters%20&amp;%20Strippers.html"><img
+            src="https://periodictableoftools.com/Images/042/042.640.jpg" alt="Wire Cutters &amp; Strippers" width="30%"></a><a
+        href="../Categories/Bolt%20Cutters.html"><img src="https://periodictableoftools.com/Images/074/074.640.jpg" alt="Bolt Cutters" width="30%"></a><a
+        href="../Categories/Shears.html"><img src="https://periodictableoftools.com/Images/106/106.640.jpg" alt="Shears" width="30%"></a><a
+        href="../Categories/Nippers.html"><img src="https://periodictableoftools.com/Images/025/025.640.jpg" alt="Nippers" width="30%"></a><a
+        href="../Categories/Loppers.html"><img src="https://periodictableoftools.com/Images/043/043.640.jpg" alt="Loppers" width="30%"></a><a
+        href="../Categories/Punch%20&amp;%20Dies.html"><img src="https://periodictableoftools.com/Images/075/075.640.jpg" alt="Punch &amp; Dies"
+            width="30%"></a><a href="../Categories/Pantographs.html"><img src="https://periodictableoftools.com/Images/107/107.640.jpg" alt="Pantographs"
+            width="30%"></a><a href="../Categories/Wood%20Saws.html"><img src="https://periodictableoftools.com/Images/026/026.640.jpg" alt="Wood Saws"
+            width="30%"></a><a href="../Categories/Pipe%20Cutters.html"><img src="https://periodictableoftools.com/Images/044/044.640.jpg"
+            alt="Pipe Cutters" width="30%"></a><a href="../Categories/Jigs%20and%20Templates.html"><img
+            src="https://periodictableoftools.com/Images/108/108.640.jpg" alt="Jigs and Templates" width="30%"></a><a
+        href="../Categories/Hacksaws.html"><img src="https://periodictableoftools.com/Images/027/027.640.jpg" alt="Hacksaws" width="30%"></a><a
+        href="../Categories/Bow%20Saws.html"><img src="https://periodictableoftools.com/Images/045/045.640.jpg" alt="Bow Saws" width="30%"></a><a
+        href="../Categories/Crazy%20Saws.html"><img src="https://periodictableoftools.com/Images/077/077.640.jpg" alt="Crazy Saws" width="30%"></a><a
+        href="../Categories/Chain%20Saws.html"><img src="https://periodictableoftools.com/Images/109/109.640.jpg" alt="Chain Saws" width="30%"></a><a
+        href="../Categories/Saw%20Teeth.html"><img src="https://periodictableoftools.com/Images/028/028.640.jpg" alt="Saw Teeth" width="30%"></a><a
+        href="../Categories/Jigsaws.html"><img src="https://periodictableoftools.com/Images/046/046.640.jpg" alt="Jigsaws" width="30%"></a><a
+        href="../Categories/Reciprocating%20Saws.html"><img src="https://periodictableoftools.com/Images/078/078.640.jpg" alt="Reciprocating Saws"
+            width="30%"></a><a href="../Categories/Scroll%20Saws.html"><img src="https://periodictableoftools.com/Images/110/110.640.jpg"
+            alt="Scroll Saws" width="30%"></a><a href="../Categories/Circular%20Saws.html"><img
+            src="https://periodictableoftools.com/Images/047/047.640.jpg" alt="Circular Saws" width="30%"></a><a
+        href="../Categories/Miter%20Saws.html"><img src="https://periodictableoftools.com/Images/079/079.640.jpg" alt="Miter Saws" width="30%"></a><a
+        href="../Categories/Radial%20Arm%20&amp;%20Table%20Saws.html"><img src="https://periodictableoftools.com/Images/111/111.640.jpg"
+            alt="Radial Arm &amp; Table Saws" width="30%"></a><a href="../Categories/Odd%20Saws.html"><img
+            src="https://periodictableoftools.com/Images/030/030.640.jpg" alt="Odd Saws" width="30%"></a><a
+        href="../Categories/Saws%20for%20Jointing.html"><img src="https://periodictableoftools.com/Images/048/048.640.jpg" alt="Saws for Jointing"
+            width="30%"></a><a href="../Categories/Bandsaws.html"><img src="https://periodictableoftools.com/Images/080/080.640.jpg" alt="Bandsaws"
+            width="30%"></a>
+    <h1>Drills</h1><a href="../Categories/Twist%20Drills.html"><img src="https://periodictableoftools.com/Images/005/005.640.jpg" alt="Twist Drills"
+            width="30%"></a><a href="../Categories/Forstner%20Bits.html"><img src="https://periodictableoftools.com/Images/013/013.640.jpg"
+            alt="Forstner Bits" width="30%"></a><a href="../Categories/Masonry%20Bits.html"><img
+            src="https://periodictableoftools.com/Images/031/031.640.jpg" alt="Masonry Bits" width="30%"></a><a href="../Categories/Reamers.html"><img
+            src="https://periodictableoftools.com/Images/049/049.640.jpg" alt="Reamers" width="30%"></a><a
+        href="../Categories/Augers%20&amp;%20Spades.html"><img src="https://periodictableoftools.com/Images/081/081.640.jpg" alt="Augers &amp; Spades"
+            width="30%"></a><a href="../Categories/Antique%20Augers.html"><img src="https://periodictableoftools.com/Images/113/113.640.jpg"
+            alt="Antique Augers" width="30%"></a><a href="../Categories/Hollow%20Drills.html"><img
+            src="https://periodictableoftools.com/Images/014/014.640.jpg" alt="Hollow Drills" width="30%"></a><a
+        href="../Categories/Eggbeater%20&amp;%20Brace%20Drills.html"><img src="https://periodictableoftools.com/Images/032/032.640.jpg"
+            alt="Eggbeater &amp; Brace Drills" width="30%"></a><a href="../Categories/Threading.html"><img
+            src="https://periodictableoftools.com/Images/050/050.640.jpg" alt="Threading" width="30%"></a><a href="../Categories/Chucks.html"><img
+            src="https://periodictableoftools.com/Images/082/082.640.jpg" alt="Chucks" width="30%"></a><a href="../Categories/Drill%20Presses.html"><img
+            src="https://periodictableoftools.com/Images/114/114.640.jpg" alt="Drill Presses" width="30%"></a><a
+        href="../Categories/Cordless%20Drills.html"><img src="https://periodictableoftools.com/Images/051/051.640.jpg" alt="Cordless Drills"
+            width="30%"></a><a href="../Categories/Angle%20Drills.html"><img src="https://periodictableoftools.com/Images/083/083.640.jpg"
+            alt="Angle Drills" width="30%"></a><a href="../Categories/Big%20Drills.html"><img
+            src="https://periodictableoftools.com/Images/115/115.640.jpg" alt="Big Drills" width="30%"></a><a
+        href="../Categories/Corded%20&amp;%20Hammer%20Drills.html"><img src="https://periodictableoftools.com/Images/116/116.640.jpg"
+            alt="Corded &amp; Hammer Drills" width="30%"></a>
+    <h1>Wrenches</h1><a href="../Categories/Even-Sided%20Wrenches.html"><img src="https://periodictableoftools.com/Images/006/006.640.jpg"
+            alt="Even-Sided Wrenches" width="30%"></a><a href="../Categories/Odd-Sided%20Wrenches.html"><img
+            src="https://periodictableoftools.com/Images/007/007.640.jpg" alt="Odd-Sided Wrenches" width="30%"></a><a
+        href="../Categories/Crescent%20Wrenches.html"><img src="https://periodictableoftools.com/Images/015/015.640.jpg" alt="Crescent Wrenches"
+            width="30%"></a><a href="../Categories/Socket%20Sets.html"><img src="https://periodictableoftools.com/Images/033/033.640.jpg"
+            alt="Socket Sets" width="30%"></a><a href="../Categories/Pipe%20Wrenches.html"><img
+            src="https://periodictableoftools.com/Images/008/008.640.jpg" alt="Pipe Wrenches" width="30%"></a><a
+        href="../Categories/Odd%20Wrenches.html"><img src="https://periodictableoftools.com/Images/016/016.640.jpg" alt="Odd Wrenches" width="30%"></a><a
+        href="../Categories/Ratchet%20Wrenches.html"><img src="https://periodictableoftools.com/Images/034/034.640.jpg" alt="Ratchet Wrenches"
+            width="30%"></a><a href="../Categories/Torque%20Wrenches.html"><img src="https://periodictableoftools.com/Images/052/052.640.jpg"
+            alt="Torque Wrenches" width="30%"></a><a href="../Categories/Impact%20Wrenches.html"><img
+            src="https://periodictableoftools.com/Images/084/084.640.jpg" alt="Impact Wrenches" width="30%"></a>
+    <h1>Tools that Add Material</h1><a href="../Categories/Soldering.html"><img src="https://periodictableoftools.com/Images/009/009.640.jpg"
+            alt="Soldering" width="30%"></a><a href="../Categories/Welding.html"><img src="https://periodictableoftools.com/Images/017/017.640.jpg"
+            alt="Welding" width="30%"></a><a href="../Categories/Casting.html"><img src="https://periodictableoftools.com/Images/035/035.640.jpg"
+            alt="Casting" width="30%"></a><a href="../Categories/Laser%20Cutters%20&amp;%203D%20Printers.html"><img
+            src="https://periodictableoftools.com/Images/053/053.640.jpg" alt="Laser Cutters &amp; 3D Printers" width="30%"></a>
+    <h1>Screwdrivers</h1><a href="../Categories/Driver%20Bits.html"><img src="https://periodictableoftools.com/Images/002/002.640.jpg" alt="Driver Bits"
+            width="30%"></a><a href="../Categories/Basic%20Drivers.html"><img src="https://periodictableoftools.com/Images/010/010.640.jpg"
+            alt="Basic Drivers" width="30%"></a><a href="../Categories/Multi%20Drivers.html"><img
+            src="https://periodictableoftools.com/Images/018/018.640.jpg" alt="Multi Drivers" width="30%"></a><a
+        href="../Categories/Driver%20Sets.html"><img src="https://periodictableoftools.com/Images/036/036.640.jpg" alt="Driver Sets" width="30%"></a><a
+        href="../Categories/Swiss%20Army%20Drivers.html"><img src="https://periodictableoftools.com/Images/054/054.640.jpg" alt="Swiss Army Drivers"
+            width="30%"></a><a href="../Categories/Screw%20Guns.html"><img src="https://periodictableoftools.com/Images/086/086.640.jpg" alt="Screw Guns"
+            width="30%"></a><a href="../Categories/Repeating%20&amp;%20Impact%20Drivers.html"><img
+            src="https://periodictableoftools.com/Images/118/118.640.jpg" alt="Repeating &amp; Impact Drivers" width="30%"></a>
+    <h1>Measuring Tools</h1><a href="../Categories/Rulers.html"><img src="https://periodictableoftools.com/Images/057/057.640.jpg" alt="Rulers"
+            width="30%"></a><a href="../Categories/Area%20Rulers.html"><img src="https://periodictableoftools.com/Images/058/058.640.jpg"
+            alt="Area Rulers" width="30%"></a><a href="../Categories/Tape%20Measures.html"><img
+            src="https://periodictableoftools.com/Images/059/059.640.jpg" alt="Tape Measures" width="30%"></a><a
+        href="../Categories/Protractors.html"><img src="https://periodictableoftools.com/Images/060/060.640.jpg" alt="Protractors" width="30%"></a><a
+        href="../Categories/Levels.html"><img src="https://periodictableoftools.com/Images/061/061.640.jpg" alt="Levels" width="30%"></a><a
+        href="../Categories/Calipers.html"><img src="https://periodictableoftools.com/Images/062/062.640.jpg" alt="Calipers" width="30%"></a><a
+        href="../Categories/Measuring%20Calipers.html"><img src="https://periodictableoftools.com/Images/063/063.640.jpg" alt="Measuring Calipers"
+            width="30%"></a><a href="../Categories/Thickness%20Gauges.html"><img src="https://periodictableoftools.com/Images/064/064.640.jpg"
+            alt="Thickness Gauges" width="30%"></a><a href="../Categories/Dial%20Indicators.html"><img
+            src="https://periodictableoftools.com/Images/065/065.640.jpg" alt="Dial Indicators" width="30%"></a><a
+        href="../Categories/Micrometers.html"><img src="https://periodictableoftools.com/Images/066/066.640.jpg" alt="Micrometers" width="30%"></a><a
+        href="../Categories/Special%20Micrometers.html"><img src="https://periodictableoftools.com/Images/067/067.640.jpg" alt="Special Micrometers"
+            width="30%"></a><a href="../Categories/Height%20&amp;%20Depth%20Gauges.html"><img
+            src="https://periodictableoftools.com/Images/068/068.640.jpg" alt="Height &amp; Depth Gauges" width="30%"></a><a
+        href="../Categories/Granite%20Flats.html"><img src="https://periodictableoftools.com/Images/069/069.640.jpg" alt="Granite Flats"
+            width="30%"></a><a href="../Categories/Mikrokator.html"><img src="https://periodictableoftools.com/Images/070/070.640.jpg" alt="Mikrokator"
+            width="30%"></a>
+    <h1>Clamping Tools</h1><a href="../Categories/Grabbers.html"><img src="https://periodictableoftools.com/Images/089/089.640.jpg" alt="Grabbers"
+            width="30%"></a><a href="../Categories/Pliers.html"><img src="https://periodictableoftools.com/Images/090/090.640.jpg" alt="Pliers"
+            width="30%"></a><a href="../Categories/Odd%20Pliers.html"><img src="https://periodictableoftools.com/Images/091/091.640.jpg" alt="Odd Pliers"
+            width="30%"></a><a href="../Categories/Plier-Wrenches.html"><img src="https://periodictableoftools.com/Images/092/092.640.jpg"
+            alt="Plier-Wrenches" width="30%"></a><a href="../Categories/Vise-Grips.html"><img
+            src="https://periodictableoftools.com/Images/093/093.640.jpg" alt="Vise-Grips" width="30%"></a><a
+        href="../Categories/Delicate%20Clamps.html"><img src="https://periodictableoftools.com/Images/094/094.640.jpg" alt="Delicate Clamps"
+            width="30%"></a><a href="../Categories/Rough%20Clamps.html"><img src="https://periodictableoftools.com/Images/095/095.640.jpg"
+            alt="Rough Clamps" width="30%"></a><a href="../Categories/Small%20Vises.html"><img
+            src="https://periodictableoftools.com/Images/096/096.640.jpg" alt="Small Vises" width="30%"></a><a href="../Categories/Big%20Vises.html"><img
+            src="https://periodictableoftools.com/Images/097/097.640.jpg" alt="Big Vises" width="30%"></a><a
+        href="../Categories/Special%20Vises.html"><img src="https://periodictableoftools.com/Images/098/098.640.jpg" alt="Special Vises"
+            width="30%"></a><a href="../Categories/Presses.html"><img src="https://periodictableoftools.com/Images/099/099.640.jpg" alt="Presses"
+            width="30%"></a><a href="../Categories/Spreaders.html"><img src="https://periodictableoftools.com/Images/100/100.640.jpg" alt="Spreaders"
+            width="30%"></a><a href="../Categories/Jacks.html"><img src="https://periodictableoftools.com/Images/101/101.640.jpg" alt="Jacks"
+            width="30%"></a>
+    <h1>Other Tools</h1><a href="../Categories/Copper%20Tools.html"><img src="https://periodictableoftools.com/Images/029/029.640.jpg" alt="Copper Tools"
+            width="30%"></a><a href="../Categories/Air%20Pressure.html"><img src="https://periodictableoftools.com/Images/076/076.640.jpg"
+            alt="Air Pressure" width="30%"></a><a href="../Categories/Optical%20Instruments.html"><img
+            src="https://periodictableoftools.com/Images/085/085.640.jpg" alt="Optical Instruments" width="30%"></a><a
+        href="../Categories/Sewing.html"><img src="https://periodictableoftools.com/Images/088/088.640.jpg" alt="Sewing" width="30%"></a><a
+        href="../Categories/Multi-Tools.html"><img src="https://periodictableoftools.com/Images/102/102.640.jpg" alt="Multi-Tools" width="30%"></a><a
+        href="../Categories/Other.html"><img src="https://periodictableoftools.com/Images/112/112.640.jpg" alt="Other" width="30%"></a><a
+        href="../Categories/Toy%20Tools.html"><img src="https://periodictableoftools.com/Images/117/117.640.jpg" alt="Toy Tools" width="30%"></a>
     <br><br><br><br>
 
 
-</body>
+    </body>
+</div>
 
-</html>
+<div id="list">
+    <img style="max-width:60vw; width:60vw;" src="https://periodictableoftools.com/Images/PosterBanner/PosterBanner.2560.jpg"
+        alt="Buy This Poster Banner" width="2560"><br><br>
+    <a href="../Categories/Basic%20Hammers.html"><img src="https://periodictableoftools.com/Images/001/001.640.jpg" alt="Basic Hammers"
+            width="30%"></a><a href="../Categories/Driver%20Bits.html"><img src="https://periodictableoftools.com/Images/002/002.640.jpg"
+            alt="Driver Bits" width="30%"></a><a href="../Categories/Fancy%20Hammers.html"><img
+            src="https://periodictableoftools.com/Images/003/003.640.jpg" alt="Fancy Hammers" width="30%"></a><a
+        href="../Categories/Punches%20&amp;%20Stamps.html"><img src="https://periodictableoftools.com/Images/004/004.640.jpg" alt="Punches &amp; Stamps"
+            width="30%"></a><a href="../Categories/Twist%20Drills.html"><img src="https://periodictableoftools.com/Images/005/005.640.jpg"
+            alt="Twist Drills" width="30%"></a><a href="../Categories/Even-Sided%20Wrenches.html"><img
+            src="https://periodictableoftools.com/Images/006/006.640.jpg" alt="Even-Sided Wrenches" width="30%"></a><a
+        href="../Categories/Odd-Sided%20Wrenches.html"><img src="https://periodictableoftools.com/Images/007/007.640.jpg" alt="Odd-Sided Wrenches"
+            width="30%"></a><a href="../Categories/Pipe%20Wrenches.html"><img src="https://periodictableoftools.com/Images/008/008.640.jpg"
+            alt="Pipe Wrenches" width="30%"></a><a href="../Categories/Soldering.html"><img src="https://periodictableoftools.com/Images/009/009.640.jpg"
+            alt="Soldering" width="30%"></a><a href="../Categories/Basic%20Drivers.html"><img
+            src="https://periodictableoftools.com/Images/010/010.640.jpg" alt="Basic Drivers" width="30%"></a><a href="../Categories/Mallets.html"><img
+            src="https://periodictableoftools.com/Images/011/011.640.jpg" alt="Mallets" width="30%"></a><a href="../Categories/Rivets.html"><img
+            src="https://periodictableoftools.com/Images/012/012.640.jpg" alt="Rivets" width="30%"></a><a href="../Categories/Forstner%20Bits.html"><img
+            src="https://periodictableoftools.com/Images/013/013.640.jpg" alt="Forstner Bits" width="30%"></a><a
+        href="../Categories/Hollow%20Drills.html"><img src="https://periodictableoftools.com/Images/014/014.640.jpg" alt="Hollow Drills"
+            width="30%"></a><a href="../Categories/Crescent%20Wrenches.html"><img src="https://periodictableoftools.com/Images/015/015.640.jpg"
+            alt="Crescent Wrenches" width="30%"></a><a href="../Categories/Odd%20Wrenches.html"><img
+            src="https://periodictableoftools.com/Images/016/016.640.jpg" alt="Odd Wrenches" width="30%"></a><a href="../Categories/Welding.html"><img
+            src="https://periodictableoftools.com/Images/017/017.640.jpg" alt="Welding" width="30%"></a><a href="../Categories/Multi%20Drivers.html"><img
+            src="https://periodictableoftools.com/Images/018/018.640.jpg" alt="Multi Drivers" width="30%"></a><a
+        href="../Categories/Sledges%20and%20Axes.html"><img src="https://periodictableoftools.com/Images/019/019.640.jpg" alt="Sledges and Axes"
+            width="30%"></a><a href="../Categories/Manual%20Nailers%20&amp;%20Staplers.html"><img
+            src="https://periodictableoftools.com/Images/020/020.640.jpg" alt="Manual Nailers &amp; Staplers" width="30%"></a><a
+        href="../Categories/Knives.html"><img src="https://periodictableoftools.com/Images/021/021.640.jpg" alt="Knives" width="30%"></a><a
+        href="../Categories/Scrapers.html"><img src="https://periodictableoftools.com/Images/022/022.640.jpg" alt="Scrapers" width="30%"></a><a
+        href="../Categories/Files.html"><img src="https://periodictableoftools.com/Images/023/023.640.jpg" alt="Files" width="30%"></a><a
+        href="../Categories/Snips.html"><img src="https://periodictableoftools.com/Images/024/024.640.jpg" alt="Snips" width="30%"></a><a
+        href="../Categories/Nippers.html"><img src="https://periodictableoftools.com/Images/025/025.640.jpg" alt="Nippers" width="30%"></a><a
+        href="../Categories/Wood%20Saws.html"><img src="https://periodictableoftools.com/Images/026/026.640.jpg" alt="Wood Saws" width="30%"></a><a
+        href="../Categories/Hacksaws.html"><img src="https://periodictableoftools.com/Images/027/027.640.jpg" alt="Hacksaws" width="30%"></a><a
+        href="../Categories/Saw%20Teeth.html"><img src="https://periodictableoftools.com/Images/028/028.640.jpg" alt="Saw Teeth" width="30%"></a><a
+        href="../Categories/Copper%20Tools.html"><img src="https://periodictableoftools.com/Images/029/029.640.jpg" alt="Copper Tools" width="30%"></a><a
+        href="../Categories/Odd%20Saws.html"><img src="https://periodictableoftools.com/Images/030/030.640.jpg" alt="Odd Saws" width="30%"></a><a
+        href="../Categories/Masonry%20Bits.html"><img src="https://periodictableoftools.com/Images/031/031.640.jpg" alt="Masonry Bits" width="30%"></a><a
+        href="../Categories/Eggbeater%20&amp;%20Brace%20Drills.html"><img src="https://periodictableoftools.com/Images/032/032.640.jpg"
+            alt="Eggbeater &amp; Brace Drills" width="30%"></a><a href="../Categories/Socket%20Sets.html"><img
+            src="https://periodictableoftools.com/Images/033/033.640.jpg" alt="Socket Sets" width="30%"></a><a
+        href="../Categories/Ratchet%20Wrenches.html"><img src="https://periodictableoftools.com/Images/034/034.640.jpg" alt="Ratchet Wrenches"
+            width="30%"></a><a href="../Categories/Casting.html"><img src="https://periodictableoftools.com/Images/035/035.640.jpg" alt="Casting"
+            width="30%"></a><a href="../Categories/Driver%20Sets.html"><img src="https://periodictableoftools.com/Images/036/036.640.jpg"
+            alt="Driver Sets" width="30%"></a><a href="../Categories/Picks%20and%20Pry%20Bars.html"><img
+            src="https://periodictableoftools.com/Images/037/037.640.jpg" alt="Picks and Pry Bars" width="30%"></a><a
+        href="../Categories/Power%20Nailers%20&amp;%20Staplers.html"><img src="https://periodictableoftools.com/Images/038/038.640.jpg"
+            alt="Power Nailers &amp; Staplers" width="30%"></a><a href="../Categories/Chisels.html"><img
+            src="https://periodictableoftools.com/Images/039/039.640.jpg" alt="Chisels" width="30%"></a><a
+        href="../Categories/Scribes%20and%20Awls.html"><img src="https://periodictableoftools.com/Images/040/040.640.jpg" alt="Scribes and Awls"
+            width="30%"></a><a href="../Categories/Routers.html"><img src="https://periodictableoftools.com/Images/041/041.640.jpg" alt="Routers"
+            width="30%"></a><a href="../Categories/Wire%20Cutters%20&amp;%20Strippers.html"><img
+            src="https://periodictableoftools.com/Images/042/042.640.jpg" alt="Wire Cutters &amp; Strippers" width="30%"></a><a
+        href="../Categories/Loppers.html"><img src="https://periodictableoftools.com/Images/043/043.640.jpg" alt="Loppers" width="30%"></a><a
+        href="../Categories/Pipe%20Cutters.html"><img src="https://periodictableoftools.com/Images/044/044.640.jpg" alt="Pipe Cutters" width="30%"></a><a
+        href="../Categories/Bow%20Saws.html"><img src="https://periodictableoftools.com/Images/045/045.640.jpg" alt="Bow Saws" width="30%"></a><a
+        href="../Categories/Jigsaws.html"><img src="https://periodictableoftools.com/Images/046/046.640.jpg" alt="Jigsaws" width="30%"></a><a
+        href="../Categories/Circular%20Saws.html"><img src="https://periodictableoftools.com/Images/047/047.640.jpg" alt="Circular Saws"
+            width="30%"></a><a href="../Categories/Saws%20for%20Jointing.html"><img src="https://periodictableoftools.com/Images/048/048.640.jpg"
+            alt="Saws for Jointing" width="30%"></a><a href="../Categories/Reamers.html"><img
+            src="https://periodictableoftools.com/Images/049/049.640.jpg" alt="Reamers" width="30%"></a><a href="../Categories/Threading.html"><img
+            src="https://periodictableoftools.com/Images/050/050.640.jpg" alt="Threading" width="30%"></a><a
+        href="../Categories/Cordless%20Drills.html"><img src="https://periodictableoftools.com/Images/051/051.640.jpg" alt="Cordless Drills"
+            width="30%"></a><a href="../Categories/Torque%20Wrenches.html"><img src="https://periodictableoftools.com/Images/052/052.640.jpg"
+            alt="Torque Wrenches" width="30%"></a><a
+        href="../Categories/Laser%20Cutters%20&amp;%203D%20Printers.html"><img src="https://periodictableoftools.com/Images/053/053.640.jpg"
+            alt="Laser Cutters &amp; 3D Printers" width="30%"></a><a
+        href="../Categories/Swiss%20Army%20Drivers.html"><img src="https://periodictableoftools.com/Images/054/054.640.jpg" alt="Swiss Army Drivers"
+            width="30%"></a><a href="../Categories/Power%20Hammers.html"><img src="https://periodictableoftools.com/Images/055/055.640.jpg"
+            alt="Power Hammers" width="30%"></a><a href="../Categories/Exotic%20Nailers.html"><img
+            src="https://periodictableoftools.com/Images/056/056.640.jpg" alt="Exotic Nailers" width="30%"></a><a href="../Categories/Rulers.html"><img
+            src="https://periodictableoftools.com/Images/057/057.640.jpg" alt="Rulers" width="30%"></a><a href="../Categories/Area%20Rulers.html"><img
+            src="https://periodictableoftools.com/Images/058/058.640.jpg" alt="Area Rulers" width="30%"></a><a
+        href="../Categories/Tape%20Measures.html"><img src="https://periodictableoftools.com/Images/059/059.640.jpg" alt="Tape Measures"
+            width="30%"></a><a href="../Categories/Protractors.html"><img src="https://periodictableoftools.com/Images/060/060.640.jpg" alt="Protractors"
+            width="30%"></a><a href="../Categories/Levels.html"><img src="https://periodictableoftools.com/Images/061/061.640.jpg" alt="Levels"
+            width="30%"></a><a href="../Categories/Calipers.html"><img src="https://periodictableoftools.com/Images/062/062.640.jpg" alt="Calipers"
+            width="30%"></a><a href="../Categories/Measuring%20Calipers.html"><img src="https://periodictableoftools.com/Images/063/063.640.jpg"
+            alt="Measuring Calipers" width="30%"></a><a href="../Categories/Thickness%20Gauges.html"><img
+            src="https://periodictableoftools.com/Images/064/064.640.jpg" alt="Thickness Gauges" width="30%"></a><a
+        href="../Categories/Dial%20Indicators.html"><img src="https://periodictableoftools.com/Images/065/065.640.jpg" alt="Dial Indicators"
+            width="30%"></a><a href="../Categories/Micrometers.html"><img src="https://periodictableoftools.com/Images/066/066.640.jpg" alt="Micrometers"
+            width="30%"></a><a href="../Categories/Special%20Micrometers.html"><img src="https://periodictableoftools.com/Images/067/067.640.jpg"
+            alt="Special Micrometers" width="30%"></a><a href="../Categories/Height%20&amp;%20Depth%20Gauges.html"><img
+            src="https://periodictableoftools.com/Images/068/068.640.jpg" alt="Height &amp; Depth Gauges" width="30%"></a><a
+        href="../Categories/Granite%20Flats.html"><img src="https://periodictableoftools.com/Images/069/069.640.jpg" alt="Granite Flats"
+            width="30%"></a><a href="../Categories/Mikrokator.html"><img src="https://periodictableoftools.com/Images/070/070.640.jpg" alt="Mikrokator"
+            width="30%"></a><a href="../Categories/Hand%20Grinders.html"><img src="https://periodictableoftools.com/Images/071/071.640.jpg"
+            alt="Hand Grinders" width="30%"></a><a href="../Categories/Sanders.html"><img src="https://periodictableoftools.com/Images/072/072.640.jpg"
+            alt="Sanders" width="30%"></a><a href="../Categories/Lathes.html"><img src="https://periodictableoftools.com/Images/073/073.640.jpg"
+            alt="Lathes" width="30%"></a><a href="../Categories/Bolt%20Cutters.html"><img src="https://periodictableoftools.com/Images/074/074.640.jpg"
+            alt="Bolt Cutters" width="30%"></a><a href="../Categories/Punch%20&amp;%20Dies.html"><img
+            src="https://periodictableoftools.com/Images/075/075.640.jpg" alt="Punch &amp; Dies" width="30%"></a><a
+        href="../Categories/Air%20Pressure.html"><img src="https://periodictableoftools.com/Images/076/076.640.jpg" alt="Air Pressure" width="30%"></a><a
+        href="../Categories/Crazy%20Saws.html"><img src="https://periodictableoftools.com/Images/077/077.640.jpg" alt="Crazy Saws" width="30%"></a><a
+        href="../Categories/Reciprocating%20Saws.html"><img src="https://periodictableoftools.com/Images/078/078.640.jpg" alt="Reciprocating Saws"
+            width="30%"></a><a href="../Categories/Miter%20Saws.html"><img src="https://periodictableoftools.com/Images/079/079.640.jpg" alt="Miter Saws"
+            width="30%"></a><a href="../Categories/Bandsaws.html"><img src="https://periodictableoftools.com/Images/080/080.640.jpg" alt="Bandsaws"
+            width="30%"></a><a href="../Categories/Augers%20&amp;%20Spades.html"><img src="https://periodictableoftools.com/Images/081/081.640.jpg"
+            alt="Augers &amp; Spades" width="30%"></a><a href="../Categories/Chucks.html"><img
+            src="https://periodictableoftools.com/Images/082/082.640.jpg" alt="Chucks" width="30%"></a><a href="../Categories/Angle%20Drills.html"><img
+            src="https://periodictableoftools.com/Images/083/083.640.jpg" alt="Angle Drills" width="30%"></a><a
+        href="../Categories/Impact%20Wrenches.html"><img src="https://periodictableoftools.com/Images/084/084.640.jpg" alt="Impact Wrenches"
+            width="30%"></a><a href="../Categories/Optical%20Instruments.html"><img src="https://periodictableoftools.com/Images/085/085.640.jpg"
+            alt="Optical Instruments" width="30%"></a><a href="../Categories/Screw%20Guns.html"><img
+            src="https://periodictableoftools.com/Images/086/086.640.jpg" alt="Screw Guns" width="30%"></a><a href="../Categories/Unhammerers.html"><img
+            src="https://periodictableoftools.com/Images/087/087.640.jpg" alt="Unhammerers" width="30%"></a><a href="../Categories/Sewing.html"><img
+            src="https://periodictableoftools.com/Images/088/088.640.jpg" alt="Sewing" width="30%"></a><a href="../Categories/Grabbers.html"><img
+            src="https://periodictableoftools.com/Images/089/089.640.jpg" alt="Grabbers" width="30%"></a><a href="../Categories/Pliers.html"><img
+            src="https://periodictableoftools.com/Images/090/090.640.jpg" alt="Pliers" width="30%"></a><a href="../Categories/Odd%20Pliers.html"><img
+            src="https://periodictableoftools.com/Images/091/091.640.jpg" alt="Odd Pliers" width="30%"></a><a
+        href="../Categories/Plier-Wrenches.html"><img src="https://periodictableoftools.com/Images/092/092.640.jpg" alt="Plier-Wrenches"
+            width="30%"></a><a href="../Categories/Vise-Grips.html"><img src="https://periodictableoftools.com/Images/093/093.640.jpg" alt="Vise-Grips"
+            width="30%"></a><a href="../Categories/Delicate%20Clamps.html"><img src="https://periodictableoftools.com/Images/094/094.640.jpg"
+            alt="Delicate Clamps" width="30%"></a><a href="../Categories/Rough%20Clamps.html"><img
+            src="https://periodictableoftools.com/Images/095/095.640.jpg" alt="Rough Clamps" width="30%"></a><a
+        href="../Categories/Small%20Vises.html"><img src="https://periodictableoftools.com/Images/096/096.640.jpg" alt="Small Vises" width="30%"></a><a
+        href="../Categories/Big%20Vises.html"><img src="https://periodictableoftools.com/Images/097/097.640.jpg" alt="Big Vises" width="30%"></a><a
+        href="../Categories/Special%20Vises.html"><img src="https://periodictableoftools.com/Images/098/098.640.jpg" alt="Special Vises"
+            width="30%"></a><a href="../Categories/Presses.html"><img src="https://periodictableoftools.com/Images/099/099.640.jpg" alt="Presses"
+            width="30%"></a><a href="../Categories/Spreaders.html"><img src="https://periodictableoftools.com/Images/100/100.640.jpg" alt="Spreaders"
+            width="30%"></a><a href="../Categories/Jacks.html"><img src="https://periodictableoftools.com/Images/101/101.640.jpg" alt="Jacks"
+            width="30%"></a><a href="../Categories/Multi-Tools.html"><img src="https://periodictableoftools.com/Images/102/102.640.jpg" alt="Multi-Tools"
+            width="30%"></a><a href="../Categories/Bench%20Grinders.html"><img src="https://periodictableoftools.com/Images/103/103.640.jpg"
+            alt="Bench Grinders" width="30%"></a><a href="../Categories/Planes.html"><img src="https://periodictableoftools.com/Images/104/104.640.jpg"
+            alt="Planes" width="30%"></a><a href="../Categories/Milling%20Machines.html"><img
+            src="https://periodictableoftools.com/Images/105/105.640.jpg" alt="Milling Machines" width="30%"></a><a href="../Categories/Shears.html"><img
+            src="https://periodictableoftools.com/Images/106/106.640.jpg" alt="Shears" width="30%"></a><a href="../Categories/Pantographs.html"><img
+            src="https://periodictableoftools.com/Images/107/107.640.jpg" alt="Pantographs" width="30%"></a><a
+        href="../Categories/Jigs%20and%20Templates.html"><img src="https://periodictableoftools.com/Images/108/108.640.jpg" alt="Jigs and Templates"
+            width="30%"></a><a href="../Categories/Chain%20Saws.html"><img src="https://periodictableoftools.com/Images/109/109.640.jpg" alt="Chain Saws"
+            width="30%"></a><a href="../Categories/Scroll%20Saws.html"><img src="https://periodictableoftools.com/Images/110/110.640.jpg"
+            alt="Scroll Saws" width="30%"></a><a href="../Categories/Radial%20Arm%20&amp;%20Table%20Saws.html"><img
+            src="https://periodictableoftools.com/Images/111/111.640.jpg" alt="Radial Arm &amp; Table Saws" width="30%"></a><a
+        href="../Categories/Other.html"><img src="https://periodictableoftools.com/Images/112/112.640.jpg" alt="Other" width="30%"></a><a
+        href="../Categories/Antique%20Augers.html"><img src="https://periodictableoftools.com/Images/113/113.640.jpg" alt="Antique Augers"
+            width="30%"></a><a href="../Categories/Drill%20Presses.html"><img src="https://periodictableoftools.com/Images/114/114.640.jpg"
+            alt="Drill Presses" width="30%"></a><a href="../Categories/Big%20Drills.html"><img
+            src="https://periodictableoftools.com/Images/115/115.640.jpg" alt="Big Drills" width="30%"></a><a
+        href="../Categories/Corded%20&amp;%20Hammer%20Drills.html"><img src="https://periodictableoftools.com/Images/116/116.640.jpg"
+            alt="Corded &amp; Hammer Drills" width="30%"></a><a href="../Categories/Toy%20Tools.html"><img
+            src="https://periodictableoftools.com/Images/117/117.640.jpg" alt="Toy Tools" width="30%"></a><a
+        href="../Categories/Repeating%20&amp;%20Impact%20Drivers.html"><img src="https://periodictableoftools.com/Images/118/118.640.jpg"
+            alt="Repeating &amp; Impact Drivers" width="30%"></a>
+</div>
