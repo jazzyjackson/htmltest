@@ -1,22 +1,16 @@
-let nav = document.querySelector("nav")
-let style = document.querySelector("#swapstyle")
 let view = localStorage.getItem("view") // maybe null
 
 if(view){
-    pushState(view)
-} else {
-    localStorage.setItem("view","table") // assumes that, if there's no localstorage, none of these buttons have been clicked yet, we land on table by default
+    document.getElementById(view).click()
 }
 
-Array.from(document.querySelectorAll("button"), button => {
-    button.addEventListener("click", event => {
-        event.preventDefault()
+Array.from(document.querySelectorAll(".viewbutton"), button => {
+    button.addEventListener("click", () => {
         pushState(button.id)
     })
 })
 
 function pushState(state /* string: list | table | groups | expand */){
-    nav.setAttribute("state", state)
-    style.setAttribute("href", "./" + state + ".css")
+    // grab the id of the radio and check it
     localStorage.setItem("view", state)
 }
