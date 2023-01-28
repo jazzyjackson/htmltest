@@ -2,6 +2,9 @@ let view = localStorage.getItem("view") // maybe null
 
 if(view){
     document.getElementById(view).click()
+} else if(window.matchMedia("(orientation: portrait)").matches) {
+   // you're in PORTRAIT mode
+    document.getElementById('groupsbtn').click()
 }
 
 Array.from(document.querySelectorAll(".viewbutton"), button => {
